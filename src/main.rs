@@ -61,6 +61,7 @@ fn main() {
         _    => panic!("Undefined scan method")
     };
 
+    // TCPプロトコル上のパケット情報を取得（送信先と受信先）
     let (mut ts, mut tr) = transport::transport_channel(1024, transport::TransportChannelType::Layer4(TransportProtocol::Ipv4(ip::IpNextHeaderProtocols::Tcp))).unwrap();
 
     // 2つのスレッドで並行処理
