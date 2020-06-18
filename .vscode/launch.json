@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'port-scanner' with args",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=port-scanner",
+                    "--package=port-scanner"
+                ],
+                "filter": {
+                    "name": "port-scanner",
+                    "kind": "bin"
+                }
+            },
+            "args": ["192.168.0.1",
+                "sS"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'port-scanner'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--bin=port-scanner",
+                    "--package=port-scanner"
+                ],
+                "filter": {
+                    "name": "port-scanner",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

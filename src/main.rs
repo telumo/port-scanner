@@ -5,7 +5,7 @@ use pnet::transport::{self, TransportProtocol};
 use std::{collections, env, fs, net, thread, time};
 
 const TCP_SIZE: usize = 20;
-const MAXIMUM_PORT_NUM: u16 = 1023;
+const MAXIMUM_PORT_NUM: u16 = 500;
 
 struct PacketInfo {
     my_ipaddr: net::Ipv4Addr,
@@ -76,7 +76,7 @@ fn main() {
         )),
     )
     .unwrap();
-
+ 
     // 2つのスレッドで並行処理。 （結果もペアで返す。）
     rayon::join(
         || send_packet(&mut ts, &packet_info),
@@ -127,8 +127,8 @@ fn receive_packets(tr: &mut transport::TransportReceiver, packet_info: &PacketIn
             }
             Err(_) => continue,
         };
+        // Target Portは１ずつ増加
         let target_port = tcp_packet.get_source();
-        
         // 自分が指定したScan Type
         match packet_info.scan_type {
             ScanType::SynScan => {
