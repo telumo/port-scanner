@@ -7,6 +7,7 @@ use std::{collections, env, fs, net, thread, time};
 const TCP_SIZE: usize = 20;
 const MAXIMUM_PORT_NUM: u16 = 500;
 
+#[derive(Debug)]
 struct PacketInfo {
     my_ipaddr: net::Ipv4Addr,
     target_ipaddr: net::Ipv4Addr,
@@ -14,7 +15,7 @@ struct PacketInfo {
     scan_type: ScanType,
 }
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 enum ScanType {
     SynScan = tcp::TcpFlags::SYN as isize,
     FinScan = tcp::TcpFlags::FIN as isize,
